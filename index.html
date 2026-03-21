@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Riya ❤️</title>
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg,#1a1a1a,#2b0a1a,#000000);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:auto;
+    color:white;
+}
+
+/* glass pink card */
+.container{
+    background: rgba(255, 105, 180, 0.08);
+    border:1px solid rgba(255,105,180,0.3);
+    backdrop-filter: blur(15px);
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 0 40px rgba(255,105,180,0.3);
+    animation:fadeIn 2s;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:scale(0.9);}
+    to{opacity:1; transform:scale(1);}
+}
+
+/* heading */
+h1{
+    font-size:28px;
+    color:#ff4d79;
+    text-shadow:0 0 10px #ff4d79;
+}
+
+/* image */
+img{
+    width:220px;
+    border-radius:20px;
+    margin:20px 0;
+    box-shadow:0 0 25px rgba(255,105,180,0.5);
+}
+
+/* buttons */
+button{
+    padding:10px 18px;
+    margin:8px;
+    border:none;
+    border-radius:20px;
+    font-size:15px;
+    cursor:pointer;
+    background: linear-gradient(45deg,#ff4d79,#ff99ac);
+    color:white;
+    font-weight:bold;
+    box-shadow:0 0 10px rgba(255,105,180,0.5);
+}
+
+button:hover{
+    transform:scale(1.08);
+}
+
+/* message */
+#message{
+    margin-top:15px;
+    font-size:16px;
+    line-height:1.6;
+}
+
+/* hearts */
+.heart{
+    position:absolute;
+    bottom:-10px;
+    font-size:18px;
+    animation:float 6s linear infinite;
+    opacity:0.8;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-100vh);}
+}
+
+/* confetti */
+.confetti{
+    position:absolute;
+    width:8px;
+    height:8px;
+    background:#ff4d79;
+    animation:fall 4s linear infinite;
+}
+
+@keyframes fall{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(100vh);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎂 Happy 18 TH Birthday RIYA BBY ❤️</h1>
+
+<img src="Screenshot_20260321-120741.WhatsApp~2.png">
+
+<br>
+
+<button onclick="showMessage()">Surprise 🎁</button>
+<button onclick="playMusic()">Play Music 🎵</button>
+
+<p id="message"></p>
+
+</div>
+
+<audio id="music" controls>
+  <source src="midnight.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+function showMessage(){
+document.getElementById("message").innerHTML = `
+Wishing you a very very happy birthday bby 😘🫂💕<br><br>
+
+As you turn 18 now, so welcome to adulthood 💖<br>
+Best wishes to you for your new chapter of life 🌸<br><br>
+
+Happy 18th, beautiful! 💕<br><br>
+
+English mistake ignore karna 😂<br><br>
+
+Love you baccha 😘😘😘🫂<br>
+Khub sara pyaar ♥️
+`;
+
+/* confetti blast */
+for(let i=0;i<50;i++){
+let conf=document.createElement("div");
+conf.className="confetti";
+conf.style.left=Math.random()*100+"%";
+document.body.appendChild(conf);
+
+setTimeout(()=>{conf.remove();},4000);
+}
+}
+
+function playMusic(){
+document.getElementById("music").play();
+}
+
+/* floating hearts */
+setInterval(function(){
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"%";
+document.body.appendChild(heart);
+
+setTimeout(()=>{heart.remove();},6000);
+},500);
+
+</script>
+
+</body>
+</html>
