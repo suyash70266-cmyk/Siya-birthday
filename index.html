@@ -5,57 +5,90 @@
 <title>Riya ❤️</title>
 
 <style>
-body{
+*{
     margin:0;
-    font-family:Arial;
-    background:linear-gradient(135deg,#ff4d79,#1a1a1a);
-    color:white;
-    text-align:center;
+    padding:0;
+    box-sizing:border-box;
 }
 
-/* Start screen */
+body{
+    font-family:Arial;
+    height:100vh;
+    background:linear-gradient(135deg,#ff4d79,#1a1a1a);
+    color:white;
+    overflow:hidden;
+}
+
+/* FULL SCREEN START */
 #start{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     flex-direction:column;
+    background:linear-gradient(135deg,#ff4d79,#000);
+    z-index:999;
 }
 
-/* Hidden content */
+/* MAIN CONTENT */
 #main{
-    display:none;
-    padding:20px;
+    position:absolute;
+    top:0;
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    opacity:0;
+    transition:1s;
 }
 
-/* Image */
+/* SHOW CLASS */
+.show{
+    opacity:1 !important;
+}
+
+/* IMAGE */
 img{
-    width:220px;
+    width:230px;
     border-radius:20px;
     margin:15px 0;
 }
 
-/* Button */
+/* BUTTON */
 button{
-    padding:10px 20px;
+    padding:12px 25px;
     border:none;
-    border-radius:20px;
+    border-radius:25px;
     background:white;
     color:#ff4d79;
+    font-size:16px;
     font-weight:bold;
+    margin-top:10px;
+}
+
+/* TEXT */
+p{
+    padding:0 20px;
 }
 </style>
 
 </head>
 <body>
 
-<!-- Start -->
+<!-- START SCREEN -->
 <div id="start">
     <h2>🎁 Tap to open your surprise 💖</h2>
-    <button onclick="openPage()">Open ❤️</button>
+    <button onclick="openSurprise()">Open ❤️</button>
 </div>
 
-<!-- Main -->
+<!-- MAIN CONTENT -->
 <div id="main">
 
 <h2>🎂 Happy 18 TH Birthday RIYA BBY ❤️</h2>
@@ -74,19 +107,32 @@ Khub Sara pyaar ♥️
 
 <button onclick="playMusic()">Play Music 🎵</button>
 
-<audio id="music" src="song.mp3"></audio>
-
 </div>
 
+<!-- AUDIO -->
+<audio id="music">
+<source src="song.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-function openPage(){
+function openSurprise(){
+    // hide start screen
     document.getElementById("start").style.display="none";
-    document.getElementById("main").style.display="block";
+
+    // show main content
+    var main = document.getElementById("main");
+    main.classList.add("show");
+
+    // try autoplay
+    var music = document.getElementById("music");
+    music.play().catch(function(){
+        console.log("Autoplay blocked");
+    });
 }
 
 function playMusic(){
-    var m = document.getElementById("music");
-    m.play();
+    var music = document.getElementById("music");
+    music.play();
 }
 </script>
 
