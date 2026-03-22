@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,91 +6,79 @@
 <title>Riya ❤️</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
 body{
+    margin:0;
     font-family:Arial;
-    height:100vh;
     background:linear-gradient(135deg,#ff4d79,#1a1a1a);
     color:white;
+    text-align:center;
     overflow:hidden;
 }
 
-/* FULL SCREEN START */
-#start{
+/* screen */
+.screen{
     position:fixed;
-    top:0;
-    left:0;
     width:100%;
     height:100vh;
     display:flex;
     justify-content:center;
     align-items:center;
     flex-direction:column;
-    background:linear-gradient(135deg,#ff4d79,#000);
-    z-index:999;
 }
 
-/* MAIN CONTENT */
-#main{
-    position:absolute;
-    top:0;
-    width:100%;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-    text-align:center;
-    opacity:0;
-    transition:1s;
+/* hidden */
+.hidden{
+    display:none;
 }
 
-/* SHOW CLASS */
-.show{
-    opacity:1 !important;
-}
-
-/* IMAGE */
+/* image */
 img{
-    width:230px;
+    width:220px;
     border-radius:20px;
     margin:15px 0;
 }
 
-/* BUTTON */
+/* button */
 button{
     padding:12px 25px;
     border:none;
     border-radius:25px;
     background:white;
     color:#ff4d79;
-    font-size:16px;
     font-weight:bold;
-    margin-top:10px;
 }
 
-/* TEXT */
-p{
-    padding:0 20px;
+/* hearts */
+.heart{
+    position:fixed;
+    bottom:0;
+    font-size:18px;
+    animation:float 5s linear infinite;
+}
+
+@keyframes float{
+    from{transform:translateY(0);}
+    to{transform:translateY(-100vh);}
 }
 </style>
 
 </head>
 <body>
 
-<!-- START SCREEN -->
-<div id="start">
+<!-- STEP 1 -->
+<div id="step1" class="screen">
     <h2>🎁 Tap to open your surprise 💖</h2>
-    <button onclick="openSurprise()">Open ❤️</button>
+    <button onclick="goStep2()">Open ❤️</button>
 </div>
 
-<!-- MAIN CONTENT -->
-<div id="main">
+<!-- STEP 2 -->
+<div id="step2" class="screen hidden">
+    <h2>💖 Ready for your surprise?</h2>
+    <button onclick="showFinal()">Open Surprise 🎉</button>
+</div>
+
+<!-- FINAL CONTENT -->
+<div id="main" class="screen hidden">
 
 <h2>🎂 Happy 18 TH Birthday RIYA BBY ❤️</h2>
 
@@ -115,24 +104,33 @@ Khub Sara pyaar ♥️
 </audio>
 
 <script>
-function openSurprise(){
-    // hide start screen
-    document.getElementById("start").style.display="none";
+function goStep2(){
+    document.getElementById("step1").style.display="none";
+    document.getElementById("step2").style.display="flex";
+}
 
-    // show main content
-    var main = document.getElementById("main");
-    main.classList.add("show");
+function showFinal(){
+    document.getElementById("step2").style.display="none";
+    document.getElementById("main").style.display="flex";
 
-    // try autoplay
-    var music = document.getElementById("music");
-    music.play().catch(function(){
-        console.log("Autoplay blocked");
-    });
+    // play music
+    let m = document.getElementById("music");
+    m.play().catch(()=>{});
+
+    // hearts
+    setInterval(function(){
+        let h=document.createElement("div");
+        h.className="heart";
+        h.innerHTML="❤️";
+        h.style.left=Math.random()*100+"%";
+        document.body.appendChild(h);
+
+        setTimeout(()=>{h.remove();},5000);
+    },400);
 }
 
 function playMusic(){
-    var music = document.getElementById("music");
-    music.play();
+    document.getElementById("music").play();
 }
 </script>
 
