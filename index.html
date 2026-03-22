@@ -20,6 +20,16 @@ body{
     justify-content:center;
     align-items:center;
     flex-direction:column;
+.heart{
+    position:fixed;
+    bottom:0;
+    font-size:20px;
+    animation:float 4s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-100vh);}
 }
 
 /* hidden */
@@ -89,7 +99,28 @@ function step2(){
     document.getElementById("step2").classList.remove("hidden");
 }
 
-function showMain(){
+function showMain(){function showMain(){
+    document.getElementById("step2").classList.add("hidden");
+    document.getElementById("main").classList.remove("hidden");
+
+    // music
+    document.getElementById("music").play().catch(()=>{});
+
+    // hearts
+    setInterval(function(){
+        let h = document.createElement("div");
+        h.className = "heart";
+        h.innerHTML = "❤️";
+        h.style.left = Math.random()*100 + "%";
+
+        document.body.appendChild(h);
+
+        setTimeout(()=>{
+            h.remove();
+        },4000);
+
+    },300);
+}
     document.getElementById("step2").classList.add("hidden");
     document.getElementById("main").classList.remove("hidden");
 
