@@ -114,7 +114,7 @@ button:hover{
 
 <h1>🎂 Happy 18 TH Birthday RIYA BBY ❤️</h1>
 
-<img src="riya.jpg">
+<img src="Screenshot_20260321-120741.WhatsApp~2.png">
 
 <br>
 
@@ -125,9 +125,7 @@ button:hover{
 
 </div>
 
-<audio id="music">
-<source src="song.mp3" type="audio/mpeg">
-</audio>
+<audio id="music" src="song.mp3"></audio>
 
 <script>
 
@@ -158,7 +156,10 @@ setTimeout(()=>{conf.remove();},4000);
 }
 
 function playMusic(){
-document.getElementById("music").play();
+    let m = document.getElementById("music");
+    m.play().then(()=>{}).catch(()=>{
+        alert("Tap again to play music 🎵");
+    });
 }
 
 /* floating hearts */
