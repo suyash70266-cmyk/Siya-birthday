@@ -1,137 +1,133 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Riya ❤️</title>
-
-<style>
-body{
-    margin:0;
-    font-family:Arial;
-    background:#ff4d79;
-    color:white;
-    text-align:center;
-}
-
-/* full screen center */
-.center{
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    flex-direction:column;
-.heart{
-    position:fixed;
-    bottom:0;
-    font-size:20px;
-    animation:float 4s linear infinite;
-}
-
-@keyframes float{
-    0%{transform:translateY(0);}
-    100%{transform:translateY(-100vh);}
-}
-
-/* hidden */
-.hidden{
-    display:none;
-}
-
-/* image */
-img{
-    width:220px;
-    border-radius:20px;
-    margin:15px 0;
-}
-
-/* button */
-button{
-    padding:12px 25px;
-    border:none;
-    border-radius:25px;
-    background:white;
-    color:#ff4d79;
-    font-weight:bold;
-}
-</style>
-
+  <meta charset="UTF-8">
+  <title>Riya ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff4d79, #1a1a1a);
+      color: white;
+      overflow: hidden;
+      height: 100vh;
+      text-align: center;
+    }
+    /* Start screen */
+    #start {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    /* Main content hidden initially */
+    #main {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    /* Message content hidden initially */
+    #message {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    img {
+      width: 220px;
+      border-radius: 20px;
+      margin: 20px 0;
+    }
+    button {
+      padding: 12px 25px;
+      border: none;
+      border-radius: 25px;
+      background: white;
+      color: #ff4d79;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+    /* Hearts */
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: float 5s linear infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); opacity: 1; }
+      100% { transform: translateY(-100vh); opacity: 0; }
+    }
+  </style>
 </head>
 <body>
 
-<!-- STEP 1 -->
-<div id="step1" class="center">
+  <!-- Start screen -->
+  <div id="start">
     <h2>🎁 Tap to open your surprise 💖</h2>
-    <button onclick="step2()">Open ❤️</button>
-</div>
+    <button onclick="openPage()">Open ❤️</button>
+  </div>
 
-<!-- STEP 2 -->
-<div id="step2" class="center hidden">
-    <h2>💖 Ready for your surprise?</h2>
-    <button onclick="showMain()">Open Surprise 🎉</button>
-</div>
+  <!-- Main content: Picture + Surprise button -->
+  <div id="main">
+    <h2>🎂 Happy 18 TH Birthday RIYA BBY ❤️</h2>
+    <img src="Screenshot_20260321-120741.WhatsApp~2.png" alt="Riya">
+    <button onclick="showMessage()">Open Surprise 🎉</button>
+  </div>
 
-<!-- FINAL -->
-<div id="main" class="center hidden">
+  <!-- Message content: Full wishes + music -->
+  <div id="message">
+    <p>
+      Wishing you a very very happy birthday bby 😘🫂💕<br><br>
+      As you turn 18 now so welcome to adulthood 💖<br>
+      Best wishes to you for your new chapter of life 🌸<br><br>
+      Happy 18th, beautiful! 💕<br><br>
+      English mistake ignore karna 😂<br><br>
+      Love you baccha 😘😘😘🫂<br>
+      Khub Sara pyaar ♥️
+    </p>
+    <button onclick="playMusic()">Play Music 🎵</button>
+    <audio id="music" src="song.mp3"></audio>
+  </div>
 
-<h2>🎂 Happy 18 TH Birthday RIYA BBY ❤️</h2>
+  <script>
+    function openPage() {
+      document.getElementById('start').style.display = 'none';
+      const main = document.getElementById('main');
+      main.style.display = 'flex';
+    }
 
-<img src="Screenshot_20260321-120741.WhatsApp~2.png">
+    function showMessage() {
+      document.getElementById('main').style.display = 'none';
+      const message = document.getElementById('message');
+      message.style.display = 'flex';
+      // Start floating hearts after message appears
+      createHearts();
+    }
 
-<p>
-Wishing you a very very happy birthday bby 😘🫂💕<br><br>
-As you turn 18 now so welcome to adulthood 💖<br>
-Best wishes to you for your new chapter of life 🌸<br><br>
-Happy 18th, beautiful! 💕<br><br>
-English mistake ignore karna 😂<br><br>
-Love you baccha 😘😘😘🫂<br>
-Khub Sara pyaar ♥️
-</p>
+    function playMusic() {
+      const music = document.getElementById('music');
+      music.play().catch(() => {
+        alert("Tap again to play the music 🎵");
+      });
+    }
 
-<button onclick="playMusic()">Play Music 🎵</button>
-
-</div>
-
-<audio id="music" src="song.mp3"></audio>
-
-<script>
-function step2(){
-    document.getElementById("step1").classList.add("hidden");
-    document.getElementById("step2").classList.remove("hidden");
-}
-
-function showMain(){function showMain(){
-    document.getElementById("step2").classList.add("hidden");
-    document.getElementById("main").classList.remove("hidden");
-
-    // music
-    document.getElementById("music").play().catch(()=>{});
-
-    // hearts
-    setInterval(function(){
-        let h = document.createElement("div");
-        h.className = "heart";
-        h.innerHTML = "❤️";
-        h.style.left = Math.random()*100 + "%";
-
-        document.body.appendChild(h);
-
-        setTimeout(()=>{
-            h.remove();
-        },4000);
-
-    },300);
-}
-    document.getElementById("step2").classList.add("hidden");
-    document.getElementById("main").classList.remove("hidden");
-
-    // play music
-    document.getElementById("music").play().catch(()=>{});
-}
-
-function playMusic(){
-    document.getElementById("music").play();
-}
-</script>
+    function createHearts() {
+      setInterval(() => {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        heart.innerHTML = '❤️';
+        heart.style.left = Math.random() * 100 + '%';
+        document.body.appendChild(heart);
+        setTimeout(() => {
+          heart.remove();
+        }, 5000);
+      }, 300);
+    }
+  </script>
 
 </body>
 </html>
