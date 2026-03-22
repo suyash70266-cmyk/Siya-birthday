@@ -11,6 +11,7 @@ body{
     text-align:center;
     background:linear-gradient(135deg,#ff4d79,#1a1a1a);
     color:white;
+    overflow:hidden;
 }
 
 /* Tap screen */
@@ -26,9 +27,12 @@ body{
 }
 
 /* Main content */
-#main{
+    #main{
     display:none;
-    padding:20px;
+    height:100vh;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
 }
 
 img{
@@ -88,8 +92,8 @@ Khub Sara pyaar ♥️
 
 <button onclick="playMusic()">Play Music 🎵</button>
 
-<audio id="music">
-<source src="song.mp3" type="audio/mpeg">
+<audio id="music" controls>
+<source src="song.mp3">
 </audio>
 
 </div>
@@ -97,7 +101,7 @@ Khub Sara pyaar ♥️
 <script>
 function openPage(){
     document.getElementById("start").style.display="none";
-    document.getElementById("main").style.display="block";
+    document.getElementById("main").style.display="flex";
 
     document.getElementById("music").play();
 
